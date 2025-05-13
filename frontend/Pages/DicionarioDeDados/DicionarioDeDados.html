@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicionário de Dados - Plataforma de Petróleo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .description {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            text-align: left;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        .field-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .example-value {
+            font-style: italic;
+            color: #2e7d32;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #666;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dicionário de Dados - Plataformas de Petróleo</h1>
+        
+        <div class="description" id="metadata-description">
+            Carregando descrição dos dados...
+        </div>
+        
+        <div class="table-container">
+            <table id="data-table">
+                <thead id="cabecalho">
+                    <tr>
+                        <th>Campo</th>
+                        <th>Valor</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Exemplo</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela">
+                    <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Dados atualizados em <span id="update-date"></span></p>
+        </div>
+    </div>
+
+    <script>
+        fetch('dicionario_dados_plataforma_petroleo.json')
+            .then(response => response.json())
+            .then(data => {
+                // Preenche a descrição do conjunto de dados
+                const metadataDescription = document.getElementById('metadata-description');
+                metadataDescription.textContent = data.metadata.description;
+                
+                // Preenche a data de atualização (usando a data atual como exemplo)
+                document.getElementById('update-date').textContent = new Date().toLocaleDateString();
+                
+                // Preenche a tabela com os campos do metadata
+                const corpoTabela = document.getElementById('corpo-tabela');
+                
+                data.metadata.fields.forEach(field => {
+                    const tr = document.createElement('tr');
+                    
+                    // Campo
+                    const tdField = document.createElement('td');
+                    tdField.innerHTML = `<strong>${field.field}</strong>`;
+                    
+                    // Valor (vazio pois estamos mostrando a estrutura, não os dados)
+                    const tdValue = document.createElement('td');
+                    tdValue.textContent = "-";
+                    
+                    // Descrição
+                    const tdDescription = document.createElement('td');
+                    tdDescription.textContent = field.description;
+                    
+                    // Tipo
+                    const tdType = document.createElement('td');
+                    tdType.textContent = field.type;
+                    
+                    // Exemplo
+                    const tdExample = document.createElement('td');
+                    tdExample.innerHTML = `<span class="example-value">${field.example}</span>`;
+                    
+                    // Adiciona todas as células à linha
+                    tr.appendChild(tdField);
+                    tr.appendChild(tdValue);
+                    tr.appendChild(tdDescription);
+                    tr.appendChild(tdType);
+                    tr.appendChild(tdExample);
+                    
+                    // Adiciona a linha à tabela
+                    corpoTabela.appendChild(tr);
+                });
+                
+                // Se quisermos também mostrar o exemplo de dados
+                if (data.example) {
+                    const exemploSection = document.createElement('div');
+                    exemploSection.innerHTML = `
+                        <h2>Exemplo de Dados</h2>
+                        <div class="example-data" style="background-color: #e8f4f8; padding: 15px; border-radius: 5px; margin-top: 30px;">
+                            <pre>${JSON.stringify(data.example, null, 2)}</pre>
+                        </div>
+                    `;
+                    document.querySelector('.container').appendChild(exemploSection);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os dados:', error);
+                document.getElementById('metadata-description').textContent = 'Erro ao carregar os dados. Por favor, tente novamente mais tarde.';
+            });
+    </script>
+</body>
+</html>

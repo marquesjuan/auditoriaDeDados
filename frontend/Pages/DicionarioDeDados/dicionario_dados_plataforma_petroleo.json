@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "description": "Informações sobre instalações de produção de petróleo e gás",
+    "fields": [
+      {
+        "field": "SIGLA DA INSTALAÇÃO",
+        "description": "Código ou sigla que identifica a instalação de produção",
+        "type": "Texto",
+        "example": "FPSO1"
+      },
+      {
+        "field": "NOME DA INSTALAÇÃO",
+        "description": "Nome completo da instalação de produção",
+        "type": "Texto",
+        "example": "FPSO Cidade de Angra dos Reis"
+      },
+      {
+        "field": "CAMPOS",
+        "description": "Nome(s) do(s) campo(s) de petróleo atendido(s) pela instalação",
+        "type": "Texto (lista ou string separada por vírgula)",
+        "example": "Tupi, Iracema"
+      },
+      {
+        "field": "BACIA",
+        "description": "Nome da bacia sedimentar onde a instalação está localizada",
+        "type": "Texto",
+        "example": "Bacia de Santos"
+      },
+      {
+        "field": "OPERADOR",
+        "description": "Empresa responsável pela operação da instalação",
+        "type": "Texto",
+        "example": "Petrobras"
+      },
+      {
+        "field": "CLASSIFICAÇÃO",
+        "description": "Tipo ou categoria da instalação (ex: plataforma fixa, FPSO)",
+        "type": "Texto",
+        "example": "FPSO"
+      },
+      {
+        "field": "LÂMINA D'ÁGUA (m)",
+        "description": "Profundidade da água no local da instalação, em metros",
+        "type": "Numérico (inteiro ou decimal)",
+        "example": 2100
+      },
+      {
+        "field": "SISTEMA DE ESCOAMENTO",
+        "description": "Tipo de sistema utilizado para escoamento da produção",
+        "type": "Texto",
+        "example": "Dutos submarinos"
+      },
+      {
+        "field": "ANO DE INÍCIO DE OPERAÇÃO",
+        "description": "Ano em que a instalação iniciou suas operações",
+        "type": "Numérico (ano)",
+        "example": 2010
+      },
+      {
+        "field": "LATITUDE",
+        "description": "Latitude da localização da instalação (graus decimais)",
+        "type": "Numérico (decimal)",
+        "example": -23.4567
+      },
+      {
+        "field": "LONGITUDE",
+        "description": "Longitude da localização da instalação (graus decimais)",
+        "type": "Numérico (decimal)",
+        "example": -42.1234
+      },
+      {
+        "field": "CAPACIDADE DE PRODUÇÃO DE PETRÓLEO (bbl/d)",
+        "description": "Capacidade máxima de produção de petróleo, em barris por dia",
+        "type": "Numérico (inteiro)",
+        "example": 100000
+      },
+      {
+        "field": "CAPACIDADE DE PRODUÇÃO DE GÁS NATURAL (Mil m³/d)",
+        "description": "Capacidade máxima de produção de gás natural, em mil metros cúbicos por dia",
+        "type": "Numérico (inteiro ou decimal)",
+        "example": 500
+      }
+    ]
+  },
+  "example": {
+    "SIGLA DA INSTALAÇÃO": "FPSO1",
+    "NOME DA INSTALAÇÃO": "FPSO Cidade de Angra dos Reis",
+    "CAMPOS": "Tupi, Iracema",
+    "BACIA": "Bacia de Santos",
+    "OPERADOR": "Petrobras",
+    "CLASSIFICAÇÃO": "FPSO",
+    "LÂMINA D'ÁGUA (m)": 2100,
+    "SISTEMA DE ESCOAMENTO": "Dutos submarinos",
+    "ANO DE INÍCIO DE OPERAÇÃO": 2010,
+    "LATITUDE": -23.4567,
+    "LONGITUDE": -42.1234,
+    "CAPACIDADE DE PRODUÇÃO DE PETRÓLEO (bbl/d)": 100000,
+    "CAPACIDADE DE PRODUÇÃO DE GÁS NATURAL (Mil m³/d)": 500
+  }
+}
